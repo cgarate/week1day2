@@ -47,6 +47,21 @@ function getTax(province, total) {
 
 function calculateSalesTax(salesData, taxRates) {
   var salesTaxTotals = {};
+  var tempSalesTotal = 0;
+  var tempTaxesTotal = 0;
+
+  for (var dataPoint in salesData) {
+    if (!salesData.hasOwnProperty(dataPoint)) {
+        //The current property is not a direct property of p
+        continue;
+    }
+    //salesTaxTotals[salesData[dataPoint].name] = { totalSales: 0, totalTaxes: 0};
+    tempSalesTotal = getTotal(salesData[dataPoint].sales);
+    tempTaxesTotal = getTax(salesData[dataPoint].province, tempSalesTotal);
+    salesTaxTotals[salesData[dataPoint].name] = { totalSales: tempSalesTotal, totalTaxes: tempTaxesTotal };
+    console.log(salesData[dataPoint].sales);
+    console.log(salesTaxTotals);
+  }
 
 }
 
