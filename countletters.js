@@ -19,6 +19,8 @@ function countLetters(str) {
   for (var i = 0; i < noSpaces.length; i++) {
     // Found a way to create a dynamic key with brackets ---> obj[variableReference]
     stringStats[noSpaces[i]] = 0;
+    //The line below doesn't work. It creates the key but it gives NaN as the end result.
+    //stringStats = {[noSpaces[i]] : Number(0)}
   }
 
   // Once we have the object initialized with zeros we can loop again to finish the count.
