@@ -29,6 +29,7 @@ function countLetters(str) {
   return stringStats;
 }
 
+console.log(countLetters("lighthouse in the house"));
 console.log(countLetters("Lorem Ipsum whatevaaaaaaaaaaaa!!!"));
 console.log(countLetters("Supercalifragilisticoespialidoso."));
 console.log(countLetters("The big brown fox jumped over the lazy dog."));
