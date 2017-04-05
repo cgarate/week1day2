@@ -1,7 +1,7 @@
 /*
   calculateSalesTax()
   Loop over companySalesData
-    Init the object that will contain the totals with the name values in companySalesData.
+    Init the object that will contain the totals with the name values in companySalesData and totals in 0.
   End Loop
 
   Loop over CompanySalesData
@@ -37,12 +37,23 @@ var companySalesData = [
 
 // This function will add up the sales and return a total. It will receive an array and add up its values.
 function getTotal(arr) {
-
+  var total = 0;
+  for (position in arr) {
+    if (!arr.hasOwnProperty(position)) {
+        //The current property is not a direct property of arr
+        continue;
+      }
+      total += Number(arr[position]);
+  }
+  return total;
 }
 
 // This function will receive a province and a total and it will calculate and return the sales tax
 function getTax(province, total) {
+  var theRate = salesTaxRates[province];
+  var taxTotal = 0;
 
+  return taxTotal = Number(theRate) * Number(total);
 }
 
 function calculateSalesTax(salesData, taxRates) {
@@ -55,18 +66,30 @@ function calculateSalesTax(salesData, taxRates) {
         //The current property is not a direct property of p
         continue;
     }
-    //salesTaxTotals[salesData[dataPoint].name] = { totalSales: 0, totalTaxes: 0};
-    tempSalesTotal = getTotal(salesData[dataPoint].sales);
-    tempTaxesTotal = getTax(salesData[dataPoint].province, tempSalesTotal);
-    salesTaxTotals[salesData[dataPoint].name] = { totalSales: tempSalesTotal, totalTaxes: tempTaxesTotal };
-    console.log(salesData[dataPoint].sales);
-    console.log(salesTaxTotals);
+    salesTaxTotals[salesData[dataPoint].name] = { totalSales: 0, totalTaxes: 0};
   }
+
+  for (var dataPoint in salesData) {
+    if (!salesData.hasOwnProperty(dataPoint)) {
+        //The current property is not a direct property of salesData
+        continue;
+    }
+    // Call getTotal to get the total of the datapoint and add it up to the corresponding incremental value in the totals object.
+    tempSalesTotal = getTotal(salesData[dataPoint].sales) + salesTaxTotals[salesData[dataPoint].name].totalSales;
+    // Call getTax to get the tax calculation for this datapoint and add it up to the corresponding incremental value in the totals object.
+    tempTaxesTotal = getTax(salesData[dataPoint].province, getTotal(salesData[dataPoint].sales)) + salesTaxTotals[salesData[dataPoint].name].totalTaxes;
+    // Update the object values
+    salesTaxTotals[salesData[dataPoint].name] = { totalSales: tempSalesTotal, totalTaxes: tempTaxesTotal };
+
+  }
+
+  return salesTaxTotals;
 
 }
 
 
 var results = calculateSalesTax(companySalesData, salesTaxRates);
+console.log(results);
 
 /* Expected Results:
 {
