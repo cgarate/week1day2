@@ -63,7 +63,7 @@ function calculateSalesTax(salesData, taxRates) {
 
   for (var dataPoint in salesData) {
     if (!salesData.hasOwnProperty(dataPoint)) {
-        //The current property is not a direct property of p
+        //The current property is not a direct property of salesData
         continue;
     }
     // Init the object with company name values and total values as zero.
