@@ -1,7 +1,15 @@
+/*
+  calculateSalesTax()
+  Loop over companySalesData
+    Init the object that will contain the totals with the name values in companySalesData.
+  End Loop
 
-function calculateSalesTax(salesData, taxRates) {
+  Loop over CompanySalesData
+    Call getTotal and increment the values of the sales totals.
+    Call getTax and increment the values of the tax totals
+  End Loop
 
-}
+*/
 
 var salesTaxRates = {
   AB: 0.05,
@@ -26,6 +34,22 @@ var companySalesData = [
     sales: [ 500, 100 ]
   }
 ];
+
+// This function will add up the sales and return a total. It will receive an array and add up its values.
+function getTotal(arr) {
+
+}
+
+// This function will receive a province and a total and it will calculate and return the sales tax
+function getTax(province, total) {
+
+}
+
+function calculateSalesTax(salesData, taxRates) {
+  var salesTaxTotals = {};
+
+}
+
 
 var results = calculateSalesTax(companySalesData, salesTaxRates);
 
