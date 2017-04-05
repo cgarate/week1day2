@@ -66,6 +66,7 @@ function calculateSalesTax(salesData, taxRates) {
         //The current property is not a direct property of p
         continue;
     }
+    // Init the object with company name values and total values as zero.
     salesTaxTotals[salesData[dataPoint].name] = { totalSales: 0, totalTaxes: 0};
   }
 
